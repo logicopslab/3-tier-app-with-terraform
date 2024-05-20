@@ -32,6 +32,9 @@ module "rds" {
 
 resource "aws_secretsmanager_secret" "db_password" {
   name = "rds_db_password"
+  length           = 10
+  special          = true  # by default
+  override_special = "!#$&*()-=+[]{}<>:?"
 }
 
 resource "aws_secretsmanager_secret_version" "db_password" {

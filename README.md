@@ -56,7 +56,6 @@ Similar to the frontend module but creates an EC2 instance for the backend servi
 
 It uses a custom module located in ./modules/rds to create an RDS database instance.
 It specifies the subnet IDs from the VPC module for the private subnets, the security group ID for the database, the database username, and the database password.
-The database password is retrieved from a file named rds_pass.txt located in the parent directory (../) of the Terraform configuration file.
 
 **AWS Secrets Manager:**
 
@@ -271,13 +270,15 @@ This Terraform configuration defines a variable named region with a default valu
 ## AWS Secrets Manager
 ![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/e3a91ff4-4d08-4aa2-b807-16fd4c87dad8)
 
-
 ## EC2 Instances
 ![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/30c3956b-be7d-4470-8839-1fb6d79d362e)
 
-
 ## RDS
 ![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/bb0e9d81-7f04-41a0-8d4b-96a7fb8d747e)
+
+## VPC
+![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/4ffcad45-fa78-4cea-af8f-fab766ea2431)
+
 
 # aws folder
 
@@ -290,9 +291,3 @@ Verify AWS credentials.
 Initialize and apply a Terraform configuration.
 Package all files in the build directory as build artifacts.
 This process is automated through the build phases, ensuring that the necessary steps are performed in sequence to provision the desired infrastructure using Terraform.
-
-
-## VPC
-![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/4ffcad45-fa78-4cea-af8f-fab766ea2431)
-
-

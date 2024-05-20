@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.8
+    commands:
+      - echo Installing Terraform
+      - curl -O https://releases.hashicorp.com/terraform/1.0.10/terraform_1.0.10_linux_amd64.zip
+      - unzip terraform_1.0.10_linux_amd64.zip
+      - mv terraform /usr/local/bin/
+      - terraform -version
+
+  pre_build:
+    commands:
+      - echo Logging in to AWS
+      - aws sts get-caller-identity
+      - echo Initializing Terraform
+      - terraform init
+
+  build:
+    commands:
+      - echo Destroying Terraform-managed infrastructure
+      - terraform destroy -auto-approve
+
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes

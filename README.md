@@ -101,13 +101,57 @@ These outputs provide a way to easily retrieve important information about the i
 
 ## modules/rds folder
 
+![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/d0efd3fb-753c-4715-bce8-2d37e8b53d79)
+
 ### main.tf
 
+This Terraform configuration defines two AWS resources: an RDS subnet group (`aws_db_subnet_group`) and an RDS database instance (`aws_db_instance`).
+
+1. **RDS Subnet Group Resource** (`aws_db_subnet_group.main`):
+   - Creates an RDS subnet group named "main-subnet-group" with the specified subnet IDs (`var.subnet_ids`).
+   - This subnet group is used to define the subnets where the RDS instances will be deployed. It ensures that the RDS instances are deployed in these specific subnets.
+
+2. **RDS Instance Resource** (`aws_db_instance.main`):
+   - Creates an RDS database instance with the identifier "main-db".
+   - The database engine is MySQL (`engine = "mysql"`).
+   - The instance class is `db.t3.micro`, which specifies the compute and memory capacity of the instance.
+   - The allocated storage for the database is 20 GB (`allocated_storage = 20`).
+   - It is associated with the RDS subnet group created earlier (`db_subnet_group_name = aws_db_subnet_group.main.name`).
+   - The security group IDs (`vpc_security_group_ids`) that control inbound and outbound traffic to the RDS instance are specified in the `var.security_group_id` variable.
+   - The database is configured with a username (`var.db_username`) and password (`var.db_password`) for authentication.
+   - `skip_final_snapshot` is set to true, which means that no final DB snapshot is created when the RDS instance is deleted.
 
 ### outputs.tf
 
+This Terraform configuration defines an output named `endpoint` that retrieves the endpoint (connection string) of the RDS database instance created earlier (`aws_db_instance.main.endpoint`). The `aws_db_instance.main.endpoint` refers to the endpoint attribute of the `aws_db_instance` resource with the identifier `main`.
+
+This output allows you to retrieve the database endpoint after the RDS instance has been created. The endpoint can be used to connect to the database from other applications or services.
 
 ### variables.tf
+
+This Terraform configuration defines several variables that can be used to parameterize the AWS resources created in the Terraform configuration:
+
+1. **`subnet_ids`**:
+   - This variable is of type `list(string)`, meaning it expects a list of string values.
+   - It is intended to store the IDs of the subnets where the RDS instance will be deployed.
+   - Example usage: `subnet_ids = ["subnet-12345", "subnet-67890"]`
+
+2. **`security_group_id`**:
+   - This variable does not have a specified type, so it can accept any value.
+   - It is intended to store the ID of the security group that controls inbound and outbound traffic to the RDS instance.
+   - Example usage: `security_group_id = "sg-123456"`
+
+3. **`db_username`**:
+   - This variable does not have a specified type, so it can accept any value.
+   - It is intended to store the username for accessing the RDS database.
+   - Example usage: `db_username = "myusername"`
+
+4. **`db_password`**:
+   - This variable does not have a specified type, so it can accept any value.
+   - It is intended to store the password for accessing the RDS database.
+   - Example usage: `db_password = "mypassword"`
+
+These variables allow you to customize the configuration of the AWS resources, such as specifying different subnets, security groups, and authentication credentials, without modifying the main Terraform configuration.
 
 ## modules/vpc folder
 

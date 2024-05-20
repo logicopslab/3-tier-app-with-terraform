@@ -1,4 +1,3 @@
-
 provider "aws" {
   region = "us-west-2"
 }
@@ -28,7 +27,7 @@ module "rds" {
   subnet_ids = module.vpc.private_subnet_ids
   security_group_id = module.vpc.database_sg_id
   db_username = "admin"
-  db_password = data.aws_secretsmanager_secret_version.db_password.secret_string
+  db_password = aws_secretsmanager_secret_version.db_password.secret_string
 }
 
 resource "aws_secretsmanager_secret" "db_password" {

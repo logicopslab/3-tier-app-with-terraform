@@ -14,7 +14,8 @@ Infrastructure setup using Terraform - Use Terraform to provision the following 
 
 ### Pre requisites
 
-Please make sure to do the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) configuration on your system
+1) Please make sure to do the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) configuration on your system
+2) Active AWS account.
 
 ### Folder Structure
 

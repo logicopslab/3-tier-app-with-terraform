@@ -88,3 +88,91 @@ This Terraform configuration defines outputs for various resources created in th
    - This output can be used to access the RDS database endpoint from other parts of the Terraform configuration or to display it after the infrastructure has been created.
 
 These outputs provide a way to easily retrieve important information about the infrastructure, such as VPC ID, EC2 instance IDs, and database endpoints, which can be useful for further configuration or troubleshooting.
+
+## modules/ec2 folder
+
+### main.tf
+
+
+### outputs.tf
+
+
+### variables.tf
+
+## modules/rds folder
+
+### main.tf
+
+
+### outputs.tf
+
+
+### variables.tf
+
+## modules/vpc folder
+
+![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/a635109c-4ec8-47b3-b107-422d3fe959a1)
+
+### main.tf
+
+This Terraform configuration defines several AWS resources for setting up a VPC (Virtual Private Cloud) with public and private subnets, along with corresponding security groups for a hypothetical application with frontend, backend, and database components. Let's break down each resource:
+
+1. **VPC Resource** (`aws_vpc.main`):
+   - Creates a VPC with the CIDR block `10.0.0.0/16`.
+
+2. **Public Subnet Resources** (`aws_subnet.public`):
+   - Creates two public subnets (`count = 2`) within the VPC.
+   - Each subnet has a CIDR block in the range `10.0.0.0/24` and `10.0.1.0/24`.
+   - Each subnet allows instances to have public IP addresses (`map_public_ip_on_launch = true`).
+   - Subnets are spread across two availability zones (`us-west-2a` and `us-west-2b`).
+
+3. **Private Subnet Resources** (`aws_subnet.private`):
+   - Similar to public subnets, but creates two private subnets (`count = 2`) with CIDR blocks `10.0.2.0/24` and `10.0.3.0/24`.
+
+4. **Security Group for Frontend** (`aws_security_group.frontend_sg`):
+   - Creates a security group for the frontend instances within the VPC.
+   - Allows inbound traffic on port 80 (HTTP) from anywhere (`0.0.0.0/0`).
+   - Allows all outbound traffic.
+
+5. **Security Group for Backend** (`aws_security_group.backend_sg`):
+   - Creates a security group for the backend instances within the VPC.
+   - Allows inbound traffic on port 8080 from the VPC CIDR block (`10.0.0.0/16`).
+   - Allows all outbound traffic.
+
+6. **Security Group for Database** (`aws_security_group.database_sg`):
+   - Creates a security group for the database instances within the VPC.
+   - Allows inbound traffic on port 3306 (MySQL) from the VPC CIDR block (`10.0.0.0/16`).
+   - Allows all outbound traffic.
+
+This configuration sets up a basic networking environment for a multi-tier application, with public subnets for frontend components, private subnets for backend components, and appropriate security groups to control traffic flow.
+
+### outputs.tf
+
+This Terraform configuration defines outputs for various AWS resources, allowing you to retrieve important information about these resources after they have been created. Here's an explanation of each output:
+
+1. **VPC ID Output**:
+   - It defines an output named `vpc_id` that retrieves the ID of the main VPC (`aws_vpc.main.id`).
+   - This output can be used to access the VPC ID from other parts of the Terraform configuration or to display it after the VPC has been created.
+
+2. **Public Subnet IDs Output**:
+   - It defines an output named `public_subnet_ids` that retrieves the IDs of all the public subnets (`aws_subnet.public[*].id`).
+   - This output uses the splat operator `[*]` to retrieve all the IDs as a list.
+   - This output can be used to access the public subnet IDs from other parts of the Terraform configuration or to display them after the subnets have been created.
+
+3. **Private Subnet IDs Output**:
+   - Similar to the public subnet output, this defines an output named `private_subnet_ids` that retrieves the IDs of all the private subnets (`aws_subnet.private[*].id`).
+
+4. **Frontend Security Group ID Output**:
+   - It defines an output named `frontend_sg_id` that retrieves the ID of the security group for the frontend service (`aws_security_group.frontend_sg.id`).
+
+5. **Backend Security Group ID Output**:
+   - Similar to the frontend security group output, this defines an output named `backend_sg_id` that retrieves the ID of the security group for the backend service (`aws_security_group.backend_sg.id`).
+
+6. **Database Security Group ID Output**:
+   - It defines an output named `database_sg_id` that retrieves the ID of the security group for the database (`aws_security_group.database_sg.id`).
+
+These outputs provide a way to easily retrieve important information about the AWS resources, such as VPC ID, subnet IDs, and security group IDs, which can be useful for further configuration or troubleshooting.
+
+### variables.tf
+
+This Terraform configuration defines a variable named region with a default value of "us-west-2". 

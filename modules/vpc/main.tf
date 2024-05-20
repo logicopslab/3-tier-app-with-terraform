@@ -7,12 +7,14 @@ resource "aws_subnet" "public" {
   vpc_id = aws_vpc.main.id
   cidr_block = "10.0.${count.index}.0/24"
   map_public_ip_on_launch = true
+  availability_zone = element(["us-west-2a", "us-west-2b"], count.index)
 }
 
 resource "aws_subnet" "private" {
   count = 2
   vpc_id = aws_vpc.main.id
   cidr_block = "10.0.${count.index + 2}.0/24"
+  availability_zone = element(["us-west-2a", "us-west-2b"], count.index)
 }
 
 resource "aws_security_group" "frontend_sg" {

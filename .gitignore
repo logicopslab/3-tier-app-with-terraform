@@ -2,3 +2,4 @@
 *LICENSE.txt
 *.terraform.lock.hcl
 *terraform-provider*
+*terraform.tfstate

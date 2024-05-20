@@ -10,7 +10,7 @@ module "vpc" {
 module "frontend_ec2" {
   source = "./modules/ec2"
   instance_type = "t2.micro"
-  ami = "ami-0abcdef1234567890"
+  ami = "ami-01cd4de4363ab6ee8"
   subnet_id = module.vpc.public_subnet_ids[0]
   security_group_ids = [module.vpc.frontend_sg_id]
 }
@@ -18,7 +18,7 @@ module "frontend_ec2" {
 module "backend_ec2" {
   source = "./modules/ec2"
   instance_type = "t2.micro"
-  ami = "ami-0abcdef1234567890"
+  ami = "ami-01cd4de4363ab6ee8"
   subnet_id = module.vpc.private_subnet_ids[0]
   security_group_ids = [module.vpc.backend_sg_id]
 }

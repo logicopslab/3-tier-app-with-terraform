@@ -19,7 +19,7 @@ Infrastructure setup using Terraform - Use Terraform to provision the following 
 
 ### Folder Structure
 
-![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/95496679-7d14-411d-800c-dd4a1450ed6f)
+![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/51a76f12-e4ae-4eaf-9636-573eb31dd9a4)
 
 # Code Walkthrough
 
@@ -278,6 +278,18 @@ This Terraform configuration defines a variable named region with a default valu
 
 ## RDS
 ![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/bb0e9d81-7f04-41a0-8d4b-96a7fb8d747e)
+
+# aws folder
+
+It contains a file called as buildspec.yml
+
+This build specification sets up a CodeBuild project to:
+
+Install Terraform.
+Verify AWS credentials.
+Initialize and apply a Terraform configuration.
+Package all files in the build directory as build artifacts.
+This process is automated through the build phases, ensuring that the necessary steps are performed in sequence to provision the desired infrastructure using Terraform.
 
 
 ## VPC

@@ -91,13 +91,57 @@ These outputs provide a way to easily retrieve important information about the i
 
 ## modules/ec2 folder
 
+![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/883dd594-b908-4c2c-92d8-a80a018ba773)
+
 ### main.tf
 
+This Terraform configuration defines an AWS EC2 instance resource named `ec2_instance`. It uses several variables to customize the instance's configuration:
+
+1. **`ami`** (`var.ami`):
+   - The AMI (Amazon Machine Image) to use for the EC2 instance. This is the base image for the instance.
+   - This value is expected to be provided through a variable (`var.ami`).
+
+2. **`instance_type`** (`var.instance_type`):
+   - The EC2 instance type, which defines the virtual hardware of the instance (e.g., CPU, memory, storage).
+   - This value is expected to be provided through a variable (`var.instance_type`).
+
+3. **`subnet_id`** (`var.subnet_id`):
+   - The ID of the subnet in which to launch the EC2 instance.
+   - This value is expected to be provided through a variable (`var.subnet_id`).
+
+4. **`security_groups`** (`var.security_group_ids`):
+   - A list of security group IDs to associate with the EC2 instance. Security groups control inbound and outbound traffic for the instance.
+   - This value is expected to be provided through a variable (`var.security_group_ids`).
+
+This resource configuration allows you to launch an EC2 instance with a specified AMI, instance type, subnet, and security groups, making it flexible and customizable based on your needs.
 
 ### outputs.tf
 
+This Terraform configuration defines an output named `instance_id` that retrieves the ID of the AWS EC2 instance created earlier in the Terraform configuration (`aws_instance.ec2_instance.id`). The `aws_instance.ec2_instance.id` refers to the ID attribute of the `aws_instance` resource with the identifier `ec2_instance`.
+
+This output allows you to retrieve the instance ID after the EC2 instance has been created. The instance ID can be used to reference or manage the EC2 instance in other parts of your infrastructure or configuration.
 
 ### variables.tf
+
+This Terraform configuration defines several variables that can be used to customize the configuration of an AWS EC2 instance:
+
+1. **`ami`**: 
+   - This variable does not have a specified type, so it can accept any value.
+   - It is intended to store the ID of the Amazon Machine Image (AMI) to use for the EC2 instance.
+
+2. **`instance_type`**: 
+   - This variable does not have a specified type, so it can accept any value.
+   - It is intended to store the type of EC2 instance to launch, which specifies the virtual hardware characteristics of the instance (e.g., CPU, memory, storage).
+
+3. **`subnet_id`**: 
+   - This variable does not have a specified type, so it can accept any value.
+   - It is intended to store the ID of the subnet in which to launch the EC2 instance.
+
+4. **`security_group_ids`**: 
+   - This variable is of type `list(string)`, meaning it expects a list of string values.
+   - It is intended to store a list of security group IDs to associate with the EC2 instance. Security groups control inbound and outbound traffic for the instance.
+
+These variables provide a way to parameterize the EC2 instance configuration, allowing you to easily customize the AMI, instance type, subnet, and security groups used for the instance without modifying the main Terraform configuration.
 
 ## modules/rds folder
 

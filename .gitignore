@@ -1,0 +1,4 @@
+*modules.json
+*LICENSE.txt
+*.terraform.lock.hcl
+*terraform-provider*

@@ -19,7 +19,7 @@ Infrastructure setup using Terraform - Use Terraform to provision the following 
 
 ### Folder Structure
 
-![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/51a76f12-e4ae-4eaf-9636-573eb31dd9a4)
+![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/aeea4dc9-1252-4348-b655-efc861c38d39)
 
 # Code Walkthrough
 
@@ -282,12 +282,14 @@ This Terraform configuration defines a variable named region with a default valu
 
 # aws folder
 
-It contains a file called as buildspec.yml
+It contains a file called as buildspec-infra-create.yml and buildspec-infra-destroy.yml
 
 This build specification sets up a CodeBuild project to:
 
-Install Terraform.
-Verify AWS credentials.
-Initialize and apply a Terraform configuration.
-Package all files in the build directory as build artifacts.
-This process is automated through the build phases, ensuring that the necessary steps are performed in sequence to provision the desired infrastructure using Terraform.
+1) Install Terraform.
+2) Verify AWS credentials.
+3) Initialize and apply a Terraform configuration.
+4) Package all files in the build directory as build artifacts.
+5) This process is automated through the build phases, ensuring that the necessary steps are performed in sequence to provision the desired infrastructure using Terraform.
+
+On the other hand, buildspec-infra-destroy.yml file destrys the infra on the AWS

@@ -265,3 +265,22 @@ These outputs provide a way to easily retrieve important information about the A
 ### variables.tf
 
 This Terraform configuration defines a variable named region with a default value of "us-west-2". 
+
+# Resulting infra on AWS
+
+## AWS Secrets Manager
+![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/e3a91ff4-4d08-4aa2-b807-16fd4c87dad8)
+
+
+## EC2 Instances
+![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/30c3956b-be7d-4470-8839-1fb6d79d362e)
+
+
+## RDS
+![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/bb0e9d81-7f04-41a0-8d4b-96a7fb8d747e)
+
+
+## VPC
+![image](https://github.com/logicopslab/3-tier-app-with-terraform/assets/82759985/4ffcad45-fa78-4cea-af8f-fab766ea2431)
+
+

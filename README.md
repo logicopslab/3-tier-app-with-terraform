@@ -1,6 +1,6 @@
 # 3-tier-app-with-terraform
 
-In this repository, we have the code which creates a Three-Tier application infrastructure using Terraform
+In this repository, we have the Terraform code which creates an innfrastructure on AWS that support a Three-Tier application.
 
 ## Problem Statement
 
